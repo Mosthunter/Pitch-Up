@@ -1,14 +1,21 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import firebase from '../config/fire';
+import fire from '../config/fire';
 class User extends React.Component {
     constructor(props) {
         super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.signup = this.signup.bind(this);
         this.state = {
          email: '',
-         fullname: ''
+         fullname: '',
+         password:''
         };
       }
+      handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+      }
+    
       updateInput = e => {
         this.setState({
           [e.target.name]: e.target.value
@@ -16,20 +23,29 @@ class User extends React.Component {
       }
       addUser = e => {
         e.preventDefault();
-        const db = firebase.firestore();
+        const db = fire.firestore();
         db.settings({
           timestampsInSnapshots: true
         });
         const userRef = db.collection('users').add({
           fullname: this.state.fullname,
-          email: this.state.email
-        });  
+          email: this.state.email,
+          password: this.state.password
+                });  
         this.setState({
           fullname: '',
-          email: ''
+          email: '',
+          password:''
         });
       };
-
+      signup(e){
+        e.preventDefault();
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        }).then((u)=>{console.log(u)})
+        .catch((error) => {
+            console.log(error);
+          })
+      }
       onLogin(){
         browserHistory.push("/")
       }
@@ -47,11 +63,21 @@ class User extends React.Component {
   <input
     type="email"
     name="email"
-    placeholder="Full name"
+    placeholder="Email"
     onChange={this.updateInput}
     value={this.state.email}
   />
-          <button type="submit">Submit</button>
+  <input
+    type="password"
+    name="password"
+    placeholder="password"
+    onChange={this.updateInput}
+    value={this.state.password}
+  />
+  <button onClick={this.signup}>signup</button>
+          <button  type="submit">Submit</button>
+          
+        
           <div>
           <button onClick={this.onLogin}>Back</button>
         </div>
