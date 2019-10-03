@@ -4,6 +4,7 @@ import fire from './config/fire';
 import Home from './components/Home';
 import Login from './components/Login';
 
+//test
 class App extends Component {
   constructor() {
     super();
