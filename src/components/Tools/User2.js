@@ -1,7 +1,6 @@
-import React from 'react';
-import {browserHistory} from 'react-router';
-import fire from '../config/fire';
-class User extends React.Component {
+import React,{Component} from 'react';
+import fire from '../../config/fire';
+class User2 extends Component{
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -46,20 +45,12 @@ class User extends React.Component {
             console.log(error);
           })
       }
-      onLogin(){
-        browserHistory.push("/")
-      }
-     
-    render() {
-    return (
-        <form onSubmit={this.addUser}>
-        <input
-          type="text"
-          name="fullname"
-          placeholder="Full name"
-          onChange={this.updateInput}
-          value={this.state.fullname}
-            />
+    render(){
+        return(
+            <form onSubmit={this.addUser}>
+        
+      
+       
   <input
     type="email"
     name="email"
@@ -75,7 +66,7 @@ class User extends React.Component {
     value={this.state.password}
   />
   <button onClick={this.signup}>signup</button>
-          <button  type="submit">Submit</button>
+        
           
         
           <div>
@@ -83,7 +74,7 @@ class User extends React.Component {
         </div>
         </form>
         
-        );
-      }
-   }
-export default User;
+        )
+    }
+}
+export default User2;
