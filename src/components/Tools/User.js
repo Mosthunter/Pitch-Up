@@ -5,7 +5,7 @@ import fire from '../../config/fire';
 class User extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+       
         this.signup = this.signup.bind(this);
         this.state = {
          email: '',
@@ -13,10 +13,7 @@ class User extends React.Component {
          password:''
         };
       }
-      handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-      }
-    
+     
       updateInput = e => {
         this.setState({
           [e.target.name]: e.target.value
@@ -41,15 +38,20 @@ class User extends React.Component {
       };
       signup(e){
         e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).then((u)=>{console.log(u)})
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(()=>{
+        }).then(()=>{console.log()})
         .catch((error) => {
             console.log(error);
           })
       }
+
+     
+
       onLogin(){
         browserHistory.push("/")
       }
+
+
      
     render() {
     return (

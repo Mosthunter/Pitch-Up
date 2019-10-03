@@ -3,18 +3,18 @@ import fire from '../../config/fire';
 class User2 extends Component{
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        
+      
         this.signup = this.signup.bind(this);
         this.state = {
-         email: '',
+         Tel: '',
          fullname: '',
-         password:''
+         type:''
+      
         };
       }
-      handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-      }
-    
+     
+      
       updateInput = e => {
         this.setState({
           [e.target.name]: e.target.value
@@ -26,46 +26,53 @@ class User2 extends Component{
         db.settings({
           timestampsInSnapshots: true
         });
-        const userRef = db.collection('users').add({
+        const userRef = db.collection(this.state.type).doc().set({
           fullname: this.state.fullname,
-          email: this.state.email,
-          password: this.state.password
-                });  
+            type: this.state.type,
+          Tel: this.state.Tel   
+         });  
         this.setState({
           fullname: '',
-          email: '',
-          password:''
+          Tel: '',
+         
         });
       };
       signup(e){
         e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).then((u)=>{console.log(u)})
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(()=>{
+        }).then(()=>{console.log()})
         .catch((error) => {
             console.log(error);
           })
       }
+     
     render(){
         return(
             <form onSubmit={this.addUser}>
-        
-      
        
-  <input
-    type="email"
-    name="email"
-    placeholder="Email"
+       <input
+    type=""
+    name="type"
+    placeholder="type"
     onChange={this.updateInput}
-    value={this.state.email}
+    value={this.state.type}
+  />  
+  
+  <input
+    type=""
+    name="fullname"
+    placeholder="fullname"
+    onChange={this.updateInput}
+    value={this.state.fullname}
   />
   <input
-    type="password"
-    name="password"
-    placeholder="password"
+    type=""
+    name="Tel"
+    placeholder="เบอร์"
     onChange={this.updateInput}
-    value={this.state.password}
+    value={this.state.Tel}
   />
-  <button onClick={this.signup}>signup</button>
+  <button type="submit">signup</button>
         
           
         
