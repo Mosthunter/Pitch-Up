@@ -2,6 +2,7 @@ import React from 'react';
 
 import Stepper from 'react-js-stepper'
 import User from './User';
+import User3 from './User3';
 import User2 from './User2';
 const steps = [{title: 'Stage - 1'}, {title: 'Stage - 2'}, {title: 'Stage - 3'},]
 
@@ -41,7 +42,7 @@ export default class App extends React.Component{
                 <div style={{marginTop: '40px'}}>
                 {this.state.activeStep === 1 ? <div><User/> </div> : 
                  this.state.activeStep === 2 ? <div> <User2/>  </div> :
-                 <div> You are in Stage {this.state.activeStep} </div>
+                 <div><User3/></div>
                 }
                 </div>
 

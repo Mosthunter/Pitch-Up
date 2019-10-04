@@ -9,8 +9,8 @@ class User2 extends Component{
         this.state = {
          Tel: '',
          fullname: '',
-         type:''
-      
+         type:'',
+         
         };
       }
      
@@ -26,7 +26,7 @@ class User2 extends Component{
         db.settings({
           timestampsInSnapshots: true
         });
-        const userRef = db.collection(this.state.type).doc().set({
+        const userRef = db.collection('users').doc().set({
           fullname: this.state.fullname,
             type: this.state.type,
           Tel: this.state.Tel   
@@ -46,7 +46,10 @@ class User2 extends Component{
           })
       }
      
+  
     render(){
+      
+  
         return(
             <form onSubmit={this.addUser}>
        
@@ -79,6 +82,7 @@ class User2 extends Component{
           <div>
           <button onClick={this.onLogin}>Back</button>
         </div>
+       
         </form>
         
         )
