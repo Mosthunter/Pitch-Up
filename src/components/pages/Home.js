@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fire from '../config/fire';
+import fire from '../../config/fire';
 
 class Home extends Component {
     constructor(props) {
@@ -15,6 +15,7 @@ class Home extends Component {
     render() {
         return (
             <div>
+                
                 <button onClick={this.logout}>logout</button>
             </div>
         )

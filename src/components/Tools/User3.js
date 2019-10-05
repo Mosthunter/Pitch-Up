@@ -15,7 +15,7 @@ class User3 extends Component {
           timestampsInSnapshots: true
         });
         var wholeData = []
-        db.collection('member').orderBy('name', 'asc').get()
+        db.collection('users').orderBy('email', 'asc').get()
         .then(snapshot => {
           snapshot.forEach(doc => {
             // console.log(doc.id, '=>', doc.data());
@@ -33,10 +33,11 @@ class User3 extends Component {
       }
     render(){
         var listOfData = this.state.allData.map((val, i)=>{
-            var name = val.name
-            var age = val.age
+            var email = val. email
+            var fullname = val.fullname
+            var password = val.password
             return (
-              <li key={i}>{name} ({age})</li>
+              <li key={i}>{ email} ({fullname} {password})</li>
             ) 
           })
         return(

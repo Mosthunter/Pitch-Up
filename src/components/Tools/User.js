@@ -26,7 +26,7 @@ class User extends React.Component {
           timestampsInSnapshots: true
         });
         const userRef = db.collection('users').add({
-          fullname: this.state.fullname,
+          
           email: this.state.email,
           password: this.state.password
                 });  
@@ -73,8 +73,8 @@ class User extends React.Component {
     onChange={this.updateInput}
     value={this.state.password}
   />
-  <button onClick={this.signup}>signup</button>
-        
+  <button onClick={this.signup}  >signup</button>
+        <button type='submit'>submit</button>
           
         
           <div>
