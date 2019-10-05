@@ -6,7 +6,7 @@ class User extends React.Component {
     constructor(props) {
         super(props);
        
-        this.signup = this.signup.bind(this);
+     
         this.state = {
          email: '',
          fullname: '',
@@ -20,6 +20,7 @@ class User extends React.Component {
         });
       }
       addUser = e => {
+        //ไป Cloud Firebase
         e.preventDefault();
         const db = fire.firestore();
         db.settings({
@@ -35,27 +36,25 @@ class User extends React.Component {
           email: '',
           password:''
         });
-      };
-      signup(e){
+        //ไปอีกหน้า
+        browserHistory.push("/");
         e.preventDefault();
+        //ไปAuth
         fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(()=>{
         }).then(()=>{console.log()})
         .catch((error) => {
             console.log(error);
           })
-      }
-
+      };
+      
      
 
-      onLogin(){
-        browserHistory.push("/")
-      }
-
+      
 
      
     render() {
     return (
-        <form onSubmit={this.addUser}>
+        <form >
         
       
        
@@ -73,8 +72,8 @@ class User extends React.Component {
     onChange={this.updateInput}
     value={this.state.password}
   />
-  <button onClick={this.signup}  >signup</button>
-        <button type='submit'>submit</button>
+  
+        <button onClick={this.addUser}>submit</button>
           
         
           <div>
